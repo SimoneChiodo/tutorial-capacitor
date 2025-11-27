@@ -23,13 +23,27 @@ Durante l’inizializzazione verranno richiesti:
 Questo crea il file `capacitor.config.json`.
 
 
-## 3. Build del progetto web
+## 3. Aggiorna i percorsi dinamici
+Modifica il tuo `vite.config.js` così:
+``` javascript,
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    outDir: 'dist', 
+  }
+})
+```
+
+## 4. Build del progetto web
 Capacitor utilizza la versione build del progetto. Generala con:  
 `npm run build`
 
 Assicurati che la build finisca in `dist/`.
 
-## 4. Aggiungere la piattaforma Android
+## 5. Aggiungere la piattaforma Android
 Dopo aver installato `@capacitor/android`, usa in console:  
 `npx cap add android`
 
@@ -37,7 +51,7 @@ Verrà creata la cartella:
 `android/`
 
 
-## 5. Sincronizzazione dei file
+## 6. Sincronizzazione dei file
 Dopo ogni build web, aggiorna Capacitor con:  
 `npx cap copy`
 
@@ -47,12 +61,12 @@ oppure con:
 (*sync include anche l’aggiornamento dei plugin*)
 
 
-## 6. Aprire il progetto Android
+## 7. Aprire il progetto Android
 Per aprire Android Studio con il progetto Capacitor:  
 `npx cap open android`
 
 
-## 7. Generare la build Android (APK o AAB)
+## 8. Generare la build Android (APK o AAB)
 In Android Studio:
 - Seleziona il modulo app.
 - Vai su Build → Build Bundle(s) / APK(s).
@@ -62,7 +76,7 @@ In Android Studio:
 
 Android Studio genererà il file nella cartella `app/build/outputs/`.
 
-## 8. Test su dispositivo o emulatore
+## 9. Test su dispositivo o emulatore
 Puoi installare l’APK su:
 - Emulatore Android
 - Dispositivo reale collegato via USB
