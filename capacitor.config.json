@@ -1,0 +1,5 @@
+{
+  "appId": "com.tutorialcapacitor.app",
+  "appName": "tutorial-capacitor",
+  "webDir": "dist"
+}
