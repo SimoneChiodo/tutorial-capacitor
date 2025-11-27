@@ -1,16 +1,171 @@
-# React + Vite
+# ✅ INSTALLARE CAPACITOR IN UN PROGETTO VITE + REACT (Build Android)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Questa guida spiega come integrare Capacitor in un progetto Vite + React per generare build Android.
 
-Currently, two official plugins are available:
+## 1. Installazione di Capacitor
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Nel tuo progetto Vite, installare il pacchetto capacitor con:  
+`npm install @capacitor/core @capacitor/cli --save`
 
-## React Compiler
+Installa la piattaforma Android (necessaria prima di aggiungerla):
+`npm install @capacitor/android`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## 2. Inizializzazione di Capacitor
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Nella root del progetto:
+`npx cap init`
+
+Durante l’inizializzazione verranno richiesti:
+`Nome app (es. MyApp)`
+`ID app (es. com.example.app)`
+
+Questo crea il file `capacitor.config.json`.
+
+
+## 3. Build del progetto web
+Capacitor utilizza la versione build del progetto. Generala con:
+`npm run build`
+
+Assicurati che la build finisca in `dist/`.
+
+## 4. Aggiungere la piattaforma Android
+Dopo aver installato `@capacitor/android`:
+`npx cap add android`
+
+Verrà creata la cartella:
+`android/`
+
+
+## 5. Sincronizzazione dei file
+Dopo ogni build web, aggiorna Capacitor con:
+`npx cap copy`
+
+oppure:
+`npx cap sync`
+
+(sync include anche l’aggiornamento dei plugin)
+
+
+## 6. Aprire il progetto Android
+Per aprire Android Studio con il progetto Capacitor:
+`npx cap open android`
+
+
+## 7. Generare la build Android (APK o AAB)
+In Android Studio:
+- Seleziona il modulo app.
+- Vai su Build → Build Bundle(s) / APK(s).
+- Scegli:
+  - Build APK(s) → per test locali
+  - Build Bundle(s) → per Play Store
+
+Android Studio genererà il file nella cartella `app/build/outputs/`.
+
+## 8. Test su dispositivo o emulatore
+Puoi installare l’APK su:
+- Emulatore Android
+- Dispositivo reale collegato via USB
+
+Ogni modifica richiede:
+``` bash,
+npm run build
+npx cap copy
+```
+
+Poi puoi rilanciare l’app dall'emulatore/dispositivo.
+
+## ⚠️ Note importanti
+- Capacitor non serve file da un dev-server: Android usa sempre la build statica generata in `dist/`.
+- I plugin Capacitor vanno installati via `npm` e sincronizzati con `npx cap sync`.
+- `npx cap serve` è utile solo per test web, non per Android.
+
+
+## 🐱 .gitignore consigliato:
+``` gitignore,
+# -----------------------------
+# Node / Vite / React
+# -----------------------------
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor e sistema
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# -----------------------------
+# Capacitor
+# -----------------------------
+# Cartelle generate automaticamente da Capacitor
+android/app/build/
+android/app/release/
+android/app/profile/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/capacitor-cordova-android-plugins/
+android/capacitor-cordova-ios-plugins/
+
+# Capacitor plugins
+**/build/
+**/dist/
+plugins/
+
+# Output generati da cap sync/copy
+www/
+
+# -----------------------------
+# Android / Gradle
+# -----------------------------
+*.apk
+*.aab
+
+# Gradle
+.gradle/
+build/
+**/build/
+!android/app/src/main/assets/
+
+# Cache
+.cxx/
+*.iml
+
+# Keystore (NON VA MAI COMMESSO)
+*.jks
+*.keystore
+*.keystore.old
+
+# Files Android vari
+android/app/debug/
+android/app/release/
+android/*.keystore
+
+# -----------------------------
+# JetBrains / IDE vari
+# -----------------------------
+*.idea/
+*.ipr
+*.iws
+
+# -----------------------------
+# Capacitor iOS (se mai aggiungerai iOS)
+# -----------------------------
+ios/App/build/
+Pods/
+*.xcworkspace
+DerivedData/
+```

@@ -1,24 +1,85 @@
+# -----------------------------
+# Node / Vite / React
+# -----------------------------
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+!.env.example
+
 # Logs
-logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Editor e sistema
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# -----------------------------
+# Capacitor
+# -----------------------------
+# Cartelle generate automaticamente da Capacitor
+android/app/build/
+android/app/release/
+android/app/profile/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/capacitor-cordova-android-plugins/
+android/capacitor-cordova-ios-plugins/
+
+# Capacitor plugins
+**/build/
+**/dist/
+plugins/
+
+# Output generati da cap sync/copy
+www/
+
+# -----------------------------
+# Android / Gradle
+# -----------------------------
+*.apk
+*.aab
+
+# Gradle
+.gradle/
+build/
+**/build/
+!android/app/src/main/assets/
+
+# Cache
+.cxx/
+*.iml
+
+# Keystore (NON VA MAI COMMESSO)
+*.jks
+*.keystore
+*.keystore.old
+
+# Files Android vari
+android/app/debug/
+android/app/release/
+android/*.keystore
+
+# -----------------------------
+# JetBrains / IDE vari
+# -----------------------------
+*.idea/
+*.ipr
+*.iws
+
+# -----------------------------
+# Capacitor iOS (se mai aggiungerai iOS)
+# -----------------------------
+ios/App/build/
+Pods/
+*.xcworkspace
+DerivedData/
