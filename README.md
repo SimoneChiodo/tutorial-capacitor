@@ -4,33 +4,33 @@ Questa guida spiega come integrare Capacitor in un progetto Vite + React per gen
 
 ## 1. Installazione di Capacitor
 
-Nel tuo progetto Vite, installare il pacchetto capacitor con:  
+Nel tuo progetto Vite, installare il pacchetto capacitor con:    
 `npm install @capacitor/core @capacitor/cli --save`
 
-Installa la piattaforma Android (necessaria prima di aggiungerla):
+Installa la piattaforma Android (necessaria prima di aggiungerla):  
 `npm install @capacitor/android`
 
 
 ## 2. Inizializzazione di Capacitor
 
-Nella root del progetto:
+Nella root del progetto, scrivere in console:  
 `npx cap init`
 
-Durante l’inizializzazione verranno richiesti:
-`Nome app (es. MyApp)`
-`ID app (es. com.example.app)`
+Durante l’inizializzazione verranno richiesti: 
+- `Nome app (es. MyApp)`
+- `ID app (es. com.example.app)`
 
 Questo crea il file `capacitor.config.json`.
 
 
 ## 3. Build del progetto web
-Capacitor utilizza la versione build del progetto. Generala con:
+Capacitor utilizza la versione build del progetto. Generala con:  
 `npm run build`
 
 Assicurati che la build finisca in `dist/`.
 
 ## 4. Aggiungere la piattaforma Android
-Dopo aver installato `@capacitor/android`:
+Dopo aver installato `@capacitor/android`, usa in console:  
 `npx cap add android`
 
 Verrà creata la cartella:
@@ -38,17 +38,17 @@ Verrà creata la cartella:
 
 
 ## 5. Sincronizzazione dei file
-Dopo ogni build web, aggiorna Capacitor con:
+Dopo ogni build web, aggiorna Capacitor con:  
 `npx cap copy`
 
-oppure:
+oppure con:  
 `npx cap sync`
 
-(sync include anche l’aggiornamento dei plugin)
+(*sync include anche l’aggiornamento dei plugin*)
 
 
 ## 6. Aprire il progetto Android
-Per aprire Android Studio con il progetto Capacitor:
+Per aprire Android Studio con il progetto Capacitor:  
 `npx cap open android`
 
 
